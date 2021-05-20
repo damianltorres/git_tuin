@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>SSIS_Datawarehouse_TUIN</Name>
+    <LastWriteTime>2021-05-19T20:55:15.426959Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
+    <Salt>ajPVYpkb</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAATuIsqg8fZPx4bDbJrhM6EGIXURLP0hHEGcEYvU86dtQAAAAAOgAAAAAIAACAAAACQ2twOrrDnuo3ORVAlyPCzOq7FevDvyokF7yV06RImdTAAAAC9Xm10tpdlJ8jLgj/jIwLQyX8Qo7jJSlEJpWYjjSGIc3VCqyDeoihOOwdccGxOyN9AAAAANPsaydCkMcmPxuBHy9NvvLCkyF5C5LIYqO8Gf3y+WvsRqViXJIB+rb/fKylgeiM51CJQsZcUD80HufUcCFjEFA==</LastKnownProtectedHashedPassword>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>BI_Modelo.dtsx</Name>
+      <LastWriteTime>2021-05-19T21:09:47.2676763Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
+      <Salt>J0+Wypeo</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAD9vI4beViGyF6NqIHuWXZvXq7l01roz72OyGuO1JmmygAAAAAOgAAAAAIAACAAAADHEKBZn2/Q/bVD691oxgvs5BB+ucmn3jKKMVVkViMNpDAAAACPMQypqPs1NOZ8mM5I4fskUPwvBNbAF9ds7shgsX2CdkGsj5S+DvF+yGOWhwwguKVAAAAAo79ZkVPt/U5dQopgFtEy9X5jFqbIe6TxX5IgNrrymAvngOYvv2I68pdNupwyUzsohdTQAVPUlfa5yQwtiebJ4w==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Orquestador_BI.dtsx</Name>
+      <LastWriteTime>2021-05-19T21:09:45.5589668Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
+      <Salt>xQrUvf50</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAABMDVAhKzGICAMcCIoRlI6Xmzv8qhF2BR2F6tv6GMT5QAAAAAOgAAAAAIAACAAAABTkkB5g3yYhyUmYlqSpUNsW00klhELgcFJ6k2OphL/HjAAAAD/rXBKk/E7DCg89R03mkNRXQ1cYXc+5w/gNuOdMemocmJYvHt6hdnYqoB/BwWy4tJAAAAAWi1jREsiRzwn6/NP5gwXrBg1gbP0wqghhP8JgfoUPYJK4aYTL/jkugC2n92iQQdX8+ujEiMhsxjYK44oesRwzw==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>
