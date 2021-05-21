@@ -1,4 +1,16 @@
+USE [SBDBITUIN]
+GO
 
+/****** Object:  View [dbo].[TUIN_Reporte_Movimientos]    Script Date: 21/05/2021 14:25:28 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+create view [bi].[Reporte_Movimientos_V] with encryption as (
 select
 --a.UserName0
 a.IdMovimientoFac
@@ -29,7 +41,7 @@ a.IdMovimientoFac
 , isnull(a.NumeroDocumento,'N/I') NumeroDocumento
 ---------------------------------------------------------------------------------------------
 , isnull(a.IdPuesto,0) IdPuesto
-, isnull(l.Nombre,'N/I') Puesto
+, 'N/I' Puesto--, isnull(l.Nombre,'N/I') Puesto
 --, a.IdEmpleadoResponsable
 , isnull(o.Empleado,'N/I') EmpleadoResponsable
 --, n.IdEmpleado1
@@ -84,23 +96,26 @@ a.IdMovimientoFac
 , DATEPART(dw,a.Fecha) Dia_Sem
 , DATEPART(day,a.Fecha) Fecha_Dia
 , datepart(hour, a.Fecha) Hora
-from [dbo].MovimientosFac a 
-left join [dbo].MovimientosDetalleFac b on b.IdMovimientoFac = a.IdMovimientoFac
-left join [dbo].Articulos c on c.IdArticulo = b.IdArticulo
-left join [dbo].GruposArticulos d on d.IdGrupoArticulo = c.IdGrupoArticulo
-left join [dbo].Cajas e on e.IdCaja =  c.IdCaja
-left join [dbo].Clientes f on f.IdCliente = a.IdCliente
-left join [dbo].CategoriasIVA g on g.IdCategoriaIVA = a.IdCategoriaIVA
-left join [dbo].TiposDocumento h on h.IdTipoDocumento = a.IdTipoDocumento
-left join [dbo].CondicionesVenta i on i.IdCondicionVenta = a.IdCondicionVenta
-left join [dbo].FamiliasArticulos j on j.IdFamiliaArticulo = d.IdFamiliaArticulo
-left join [dbo].Estaciones k on k.IdEstacion = a.IdEstacion
-left join [dbo].Puestos l on l.IdPuesto = a.IdPuesto
-left join [dbo].TiposMovimiento m on m.IdTipoMovimiento = a.IdTipoMovimiento
-left join [dbo].Empleados o  on o.IdEmpleado = a.IdEmpleadoResponsable
-left join [dbo].CierresTurno n on n.IdCierreTurno = b.IdCierreTurno and n.IdEstacion = a.IdEstacion
-left join [dbo].Empleados o1  on o1.IdEmpleado = n.IdEmpleado1
-left join [dbo].Empleados o2  on o2.IdEmpleado = n.IdEmpleado2
-left join [dbo].Empleados o3  on o3.IdEmpleado = n.IdEmpleado3
-left join [dbo].Empleados o4  on o4.IdEmpleado = n.IdEmpleado4
-order by a.IdMovimientoFac 
+from [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].MovimientosFac a 
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].MovimientosDetalleFac b on b.IdMovimientoFac = a.IdMovimientoFac
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Articulos c on c.IdArticulo = b.IdArticulo
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].GruposArticulos d on d.IdGrupoArticulo = c.IdGrupoArticulo
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Cajas e on e.IdCaja =  c.IdCaja
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Clientes f on f.IdCliente = a.IdCliente
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].CategoriasIVA g on g.IdCategoriaIVA = a.IdCategoriaIVA
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].TiposDocumento h on h.IdTipoDocumento = a.IdTipoDocumento
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].CondicionesVenta i on i.IdCondicionVenta = a.IdCondicionVenta
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].FamiliasArticulos j on j.IdFamiliaArticulo = d.IdFamiliaArticulo
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Estaciones k on k.IdEstacion = a.IdEstacion
+--left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Puestos l on l.IdPuesto = a.IdPuesto
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].TiposMovimiento m on m.IdTipoMovimiento = a.IdTipoMovimiento
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Empleados o  on o.IdEmpleado = a.IdEmpleadoResponsable
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].CierresTurno n on n.IdCierreTurno = b.IdCierreTurno and n.IdEstacion = a.IdEstacion
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Empleados o4  on o4.IdEmpleado = n.IdEmpleado4
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Empleados o1  on o1.IdEmpleado = n.IdEmpleado1
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Empleados o2  on o2.IdEmpleado = n.IdEmpleado2
+left join [TUIN\SQLAONIKEN].[DS2000.Net].[dbo].Empleados o3  on o3.IdEmpleado = n.IdEmpleado3
+)
+GO
+
+
