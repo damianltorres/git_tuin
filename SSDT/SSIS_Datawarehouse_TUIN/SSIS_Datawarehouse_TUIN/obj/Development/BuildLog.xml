@@ -2,25 +2,25 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>SSIS_Datawarehouse_TUIN</Name>
-    <LastWriteTime>2021-05-19T20:55:15.426959Z</LastWriteTime>
+    <LastWriteTime>2021-05-21T20:41:42.9556536Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
-    <Salt>ajPVYpkb</Salt>
-    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAATuIsqg8fZPx4bDbJrhM6EGIXURLP0hHEGcEYvU86dtQAAAAAOgAAAAAIAACAAAACQ2twOrrDnuo3ORVAlyPCzOq7FevDvyokF7yV06RImdTAAAAC9Xm10tpdlJ8jLgj/jIwLQyX8Qo7jJSlEJpWYjjSGIc3VCqyDeoihOOwdccGxOyN9AAAAANPsaydCkMcmPxuBHy9NvvLCkyF5C5LIYqO8Gf3y+WvsRqViXJIB+rb/fKylgeiM51CJQsZcUD80HufUcCFjEFA==</LastKnownProtectedHashedPassword>
+    <Salt>LudkuIgj</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAA27G01H/+OmpuejKoEd8SXS04ofR5AXrhOztAu2TUbygAAAAAOgAAAAAIAACAAAABPvSK4JqPf5UjjAhuwj6P0XGWWqNEbygXSKEGyjZHrszAAAAA4jkFSXsB2m0UMT7W1Xy7cMb2ySqeHm3c47QLqtHA8ktP4eAAv3838M2RDGq/OJApAAAAAxZ1Zv+C7xUkDK3xkqJGwcvPAZ+eF1TnDxdROGII6S0Olg4AwJKF+QxMShyRG2heSe/rigyaIYM/AKHA48KhjRw==</LastKnownProtectedHashedPassword>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
-      <Name>BI_Modelo.dtsx</Name>
-      <LastWriteTime>2021-05-19T21:09:47.2676763Z</LastWriteTime>
+      <Name>Orquestador_BI.dtsx</Name>
+      <LastWriteTime>2021-05-21T21:02:07.2003171Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
-      <Salt>J0+Wypeo</Salt>
-      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAD9vI4beViGyF6NqIHuWXZvXq7l01roz72OyGuO1JmmygAAAAAOgAAAAAIAACAAAADHEKBZn2/Q/bVD691oxgvs5BB+ucmn3jKKMVVkViMNpDAAAACPMQypqPs1NOZ8mM5I4fskUPwvBNbAF9ds7shgsX2CdkGsj5S+DvF+yGOWhwwguKVAAAAAo79ZkVPt/U5dQopgFtEy9X5jFqbIe6TxX5IgNrrymAvngOYvv2I68pdNupwyUzsohdTQAVPUlfa5yQwtiebJ4w==</LastKnownProtectedHashedPassword>
+      <Salt>mrb83ilw</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAADfGCbmE3/fnIUGwKcy1EhA6MxLgSUnno1XzrUPVbsRSgAAAAAOgAAAAAIAACAAAABxXm9FLbb+pjVkDGcNjPyDWltcek4cGM9iiudbCH22VzAAAACtDGtRsZxdOCi3ONc5g/y+myyHc1wqk5VwbWlS70x9gBaMHo7vRNumHxEPzuAc6g9AAAAAPxx7m9mDTmU0JFT5tDpKH6byrLrAzW9qqtSR7/vSlyvMULoZnqx/VDOElrSkn2gmkMaqBvW344qLASam3vlhvQ==</LastKnownProtectedHashedPassword>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>Orquestador_BI.dtsx</Name>
-      <LastWriteTime>2021-05-19T21:09:45.5589668Z</LastWriteTime>
+      <Name>Reporte_Movimientos.dtsx</Name>
+      <LastWriteTime>2021-05-21T21:02:04.5008336Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
-      <Salt>xQrUvf50</Salt>
-      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAABMDVAhKzGICAMcCIoRlI6Xmzv8qhF2BR2F6tv6GMT5QAAAAAOgAAAAAIAACAAAABTkkB5g3yYhyUmYlqSpUNsW00klhELgcFJ6k2OphL/HjAAAAD/rXBKk/E7DCg89R03mkNRXQ1cYXc+5w/gNuOdMemocmJYvHt6hdnYqoB/BwWy4tJAAAAAWi1jREsiRzwn6/NP5gwXrBg1gbP0wqghhP8JgfoUPYJK4aYTL/jkugC2n92iQQdX8+ujEiMhsxjYK44oesRwzw==</LastKnownProtectedHashedPassword>
+      <Salt>8HOg94/l</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAACHM3QFR6TD4EGrFB55evBMN6htqtV2jMRkje+sIqiXTQAAAAAOgAAAAAIAACAAAABEaeB8reS6IVHfa790T51kdl8BAtcq8lXirpbBZ8dOLjAAAAD0IUOiFSuBtH5fuzdc6+0FPxFk2gZixCEn6uj3sQmVbaKkIeHHr9/AqdNtruTdxhhAAAAAzPT9RxPOz7nGjzT8wPgAfwqsugo63Zmn4RWbul7YwXCN1v3eHRUNnpltTCEdJ3MiPFvJjvV2FH0M1iSOm39qfg==</LastKnownProtectedHashedPassword>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
 </BuildLog>
