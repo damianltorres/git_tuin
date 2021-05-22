@@ -1,0 +1,2676 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/22/2021 10:19:56 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PCTUIN"
+  DTS:CreatorName="PCTUIN\Tuin"
+  DTS:DTSID="{AA3C46A5-77F2-4490-8E45-2DEA82EB53A9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="reporte_movimientos"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{E43B03EC-03F0-42F1-9D63-C9ADC07CE1FE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81DDFC98-F8BE-4A44-983C-69B499FCDE5F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FechaActual">
+      <DTS:VariableValue
+        DTS:DataType="7">5/22/2021 10:31:03 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{04362649-FE1C-4899-BA08-338B43EDAF00}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="MaxIdMovimientoFac">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Asigna Max(Id) a Var MaxIdMovimientoFac"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{ad23c343-b981-494c-abfa-cd6b912c6adc}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Asigna Max(Id) a Var MaxIdMovimientoFac"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1A110EBB-1937-4D8C-B332-08D1D6CE807C}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="SELECT        ISNULL(MAX(IdMovimientoFac), 0) AS IdMovimientoFac&#xA;FROM            bi.reporte_movimientos"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::MaxIdMovimientoFac" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Borra Max Id Cargado Reporte_Movimientos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{da1ea5da-bcb3-47c7-ac0e-6ebe16039d92}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borra Max Id Cargado Reporte_Movimientos"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1A110EBB-1937-4D8C-B332-08D1D6CE807C}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="delete from [bi].[reporte_movimientos] where [IdMovimientoFac] = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::MaxIdMovimientoFac"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Dataflow - Flujo Carga de Datos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{7a70041a-4781-4514-9cdd-027fbfa85387}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dataflow - Flujo Carga de Datos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Cargando Datos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[bi].[reporte_movimientos]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Connections[OleDbConnection]"
+                  connectionManagerID="{1A110EBB-1937-4D8C-B332-08D1D6CE807C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[PCTUIN.SBDBITUIN]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdMovimientoFac]"
+                      cachedDataType="i4"
+                      cachedName="IdMovimientoFac"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdMovimientoFac]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdMovimientoFac]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdFecha]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="IdFecha"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdFecha]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdFecha]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[FechaMovimiento]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FechaMovimiento"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaMovimiento]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FechaMovimiento]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Fecha]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Fecha"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fecha]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Fecha]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Anio]"
+                      cachedDataType="i4"
+                      cachedName="Anio"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Anio]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Anio]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Mes]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="Mes"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Mes]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Mes]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Periodo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="33"
+                      cachedName="Periodo"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Periodo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Periodo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[FechaTurno]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="FechaTurno"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaTurno]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FechaTurno]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[HoraTurno]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="HoraTurno"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[HoraTurno]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[HoraTurno]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdCaja]"
+                      cachedDataType="i4"
+                      cachedName="IdCaja"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdCaja]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCaja]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Caja]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Caja"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Caja]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Caja]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdTipoMovimiento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="IdTipoMovimiento"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTipoMovimiento]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdTipoMovimiento]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[TipoMovimiento]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="TipoMovimiento"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoMovimiento]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[TipoMovimiento]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Comprobante]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="39"
+                      cachedName="Comprobante"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Comprobante]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Comprobante]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdCategoriaIVA]"
+                      cachedDataType="i4"
+                      cachedName="IdCategoriaIVA"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdCategoriaIVA]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCategoriaIVA]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[CategoriaIVA]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="CategoriaIVA"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CategoriaIVA]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CategoriaIVA]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[CondicionVenta]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="CondicionVenta"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CondicionVenta]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CondicionVenta]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdEstacion]"
+                      cachedDataType="i4"
+                      cachedName="IdEstacion"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdEstacion]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdEstacion]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Estacion]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Estacion"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estacion]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Estacion]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdCliente]"
+                      cachedDataType="i4"
+                      cachedName="IdCliente"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdCliente]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCliente]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[CodigoCliente]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="CodigoCliente"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoCliente]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CodigoCliente]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[RazonSocial]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="RazonSocial"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[RazonSocial]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[RazonSocial]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[TipoDocumento]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="TipoDocumento"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoDocumento]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[TipoDocumento]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[NumeroDocumento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="NumeroDocumento"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[NumeroDocumento]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[NumeroDocumento]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Puesto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Puesto"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Puesto]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Puesto]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[EmpleadoResponsable]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="EmpleadoResponsable"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[EmpleadoResponsable]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[EmpleadoResponsable]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Playero1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Playero1"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Playero1]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero1]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Playero2]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Playero2"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Playero2]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero2]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Playero3]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Playero3"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Playero3]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero3]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdArticulo]"
+                      cachedDataType="i4"
+                      cachedName="IdArticulo"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdArticulo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[CodigoArticulo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="CodigoArticulo"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CodigoArticulo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="Descripcion"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descripcion]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Descripcion]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdGrupoArticulo]"
+                      cachedDataType="i4"
+                      cachedName="IdGrupoArticulo"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdGrupoArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdGrupoArticulo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[GrupoArticulo]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="GrupoArticulo"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[GrupoArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[GrupoArticulo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdFamiliaArticulo]"
+                      cachedDataType="i4"
+                      cachedName="IdFamiliaArticulo"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdFamiliaArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdFamiliaArticulo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[FamiliaArticulo]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="FamiliaArticulo"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[FamiliaArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FamiliaArticulo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[SubUnidadNegocio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="SubUnidadNegocio"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[SubUnidadNegocio]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[SubUnidadNegocio]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[UnidadNegocio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="UnidadNegocio"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[UnidadNegocio]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[UnidadNegocio]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Facturado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Facturado"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Facturado]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Facturado]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Cantidad]"
+                      cachedDataType="numeric"
+                      cachedName="Cantidad"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Precio]"
+                      cachedDataType="numeric"
+                      cachedName="Precio"
+                      cachedPrecision="14"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Precio]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Precio]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Costo]"
+                      cachedDataType="numeric"
+                      cachedName="Costo"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Costo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Costo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Neto]"
+                      cachedDataType="numeric"
+                      cachedName="Neto"
+                      cachedPrecision="32"
+                      cachedScale="12"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Neto]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Neto]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IVA]"
+                      cachedDataType="numeric"
+                      cachedName="IVA"
+                      cachedPrecision="29"
+                      cachedScale="12"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IVA]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IVA]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[ImpuestoInterno]"
+                      cachedDataType="numeric"
+                      cachedName="ImpuestoInterno"
+                      cachedPrecision="29"
+                      cachedScale="12"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[ImpuestoInterno]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[ImpuestoInterno]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Tasas]"
+                      cachedDataType="numeric"
+                      cachedName="Tasas"
+                      cachedPrecision="29"
+                      cachedScale="12"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Tasas]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Tasas]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Total]"
+                      cachedDataType="numeric"
+                      cachedName="Total"
+                      cachedPrecision="27"
+                      cachedScale="10"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Total]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Grupo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="63"
+                      cachedName="Grupo"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Grupo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Grupo]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Net_Int]"
+                      cachedDataType="numeric"
+                      cachedName="Net_Int"
+                      cachedPrecision="30"
+                      cachedScale="12"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Net_Int]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Net_Int]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Costo_T]"
+                      cachedDataType="numeric"
+                      cachedName="Costo_T"
+                      cachedPrecision="31"
+                      cachedScale="12"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Costo_T]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Costo_T]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Dia_Sem]"
+                      cachedDataType="i4"
+                      cachedName="Dia_Sem"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Dia_Sem]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Dia_Sem]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Fecha_Dia]"
+                      cachedDataType="i4"
+                      cachedName="Fecha_Dia"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fecha_Dia]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Fecha_Dia]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[Hora]"
+                      cachedDataType="i4"
+                      cachedName="Hora"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Hora]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Hora]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[IdPuesto]"
+                      cachedDataType="i4"
+                      cachedName="IdPuesto"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdPuesto]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdPuesto]" />
+                    <inputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].Columns[ETL_Time]"
+                      cachedDataType="date"
+                      cachedName="ETL_Time"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[ETL_Time]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de columna derivada].Columns[ETL_Time]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdMovimientoFac]"
+                      dataType="i4"
+                      name="IdMovimientoFac" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdFecha]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="IdFecha" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaMovimiento]"
+                      dataType="dbTimeStamp"
+                      name="FechaMovimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fecha]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Anio]"
+                      dataType="i4"
+                      name="Anio" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Mes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Mes" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Periodo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="33"
+                      name="Periodo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaTurno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="FechaTurno" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[HoraTurno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="HoraTurno" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdCaja]"
+                      dataType="i4"
+                      name="IdCaja" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Caja]"
+                      dataType="wstr"
+                      length="30"
+                      name="Caja" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTipoMovimiento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="IdTipoMovimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoMovimiento]"
+                      dataType="wstr"
+                      length="30"
+                      name="TipoMovimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Comprobante]"
+                      codePage="1252"
+                      dataType="str"
+                      length="39"
+                      name="Comprobante" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdCategoriaIVA]"
+                      dataType="i4"
+                      name="IdCategoriaIVA" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CategoriaIVA]"
+                      dataType="wstr"
+                      length="38"
+                      name="CategoriaIVA" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CondicionVenta]"
+                      dataType="wstr"
+                      length="30"
+                      name="CondicionVenta" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdEstacion]"
+                      dataType="i4"
+                      name="IdEstacion" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estacion]"
+                      dataType="wstr"
+                      length="50"
+                      name="Estacion" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdCliente]"
+                      dataType="i4"
+                      name="IdCliente" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoCliente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="CodigoCliente" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[RazonSocial]"
+                      dataType="wstr"
+                      length="60"
+                      name="RazonSocial" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoDocumento]"
+                      dataType="wstr"
+                      length="30"
+                      name="TipoDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[NumeroDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="NumeroDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdPuesto]"
+                      dataType="i4"
+                      name="IdPuesto" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Puesto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Puesto" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[EmpleadoResponsable]"
+                      dataType="wstr"
+                      length="50"
+                      name="EmpleadoResponsable" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Playero1]"
+                      dataType="wstr"
+                      length="50"
+                      name="Playero1" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Playero2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Playero2" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Playero3]"
+                      dataType="wstr"
+                      length="50"
+                      name="Playero3" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdArticulo]"
+                      dataType="i4"
+                      name="IdArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoArticulo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="CodigoArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descripcion]"
+                      dataType="wstr"
+                      length="60"
+                      name="Descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdGrupoArticulo]"
+                      dataType="i4"
+                      name="IdGrupoArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[GrupoArticulo]"
+                      dataType="wstr"
+                      length="60"
+                      name="GrupoArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdFamiliaArticulo]"
+                      dataType="i4"
+                      name="IdFamiliaArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[FamiliaArticulo]"
+                      dataType="wstr"
+                      length="60"
+                      name="FamiliaArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[SubUnidadNegocio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="SubUnidadNegocio" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[UnidadNegocio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="UnidadNegocio" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Facturado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Facturado" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad]"
+                      dataType="numeric"
+                      name="Cantidad"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Precio]"
+                      dataType="numeric"
+                      name="Precio"
+                      precision="14"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Costo]"
+                      dataType="numeric"
+                      name="Costo"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Neto]"
+                      dataType="numeric"
+                      name="Neto"
+                      precision="32"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[IVA]"
+                      dataType="numeric"
+                      name="IVA"
+                      precision="29"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[ImpuestoInterno]"
+                      dataType="numeric"
+                      name="ImpuestoInterno"
+                      precision="29"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Tasas]"
+                      dataType="numeric"
+                      name="Tasas"
+                      precision="29"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
+                      dataType="numeric"
+                      name="Total"
+                      precision="27"
+                      scale="10" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="63"
+                      name="Grupo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Net_Int]"
+                      dataType="numeric"
+                      name="Net_Int"
+                      precision="30"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Costo_T]"
+                      dataType="numeric"
+                      name="Costo_T"
+                      precision="31"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Dia_Sem]"
+                      dataType="i4"
+                      name="Dia_Sem" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fecha_Dia]"
+                      dataType="i4"
+                      name="Fecha_Dia" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Hora]"
+                      dataType="i4"
+                      name="Hora" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB].ExternalColumns[ETL_Time]"
+                      dataType="dbTimeStamp"
+                      name="ETL_Time" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="Genera Campos Calculados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de columna derivada].Columns[ETL_Time]"
+                      dataType="date"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de columna derivada].Columns[ETL_Time]"
+                      name="ETL_Time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">@[User::FechaActual]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::FechaActual]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Leyendo Origen de Datos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select
+--a.UserName0
+a.IdMovimientoFac
+--, a.LastUpdated
+--, a.FechaEmision
+, convert(varchar,a.Fecha, 112) IdFecha
+, a.Fecha FechaMovimiento
+, convert(varchar,a.FechaEmision, 23) Fecha
+, year(a.Fecha) Anio
+, right ('00'+ convert(varchar,month(a.Fecha)),2) Mes
+, convert(varchar,year(a.Fecha))+'-'+right ('00'+ convert(varchar,month(a.Fecha)),2) Periodo
+, convert(varchar, n.Fecha , 23) FechaTurno --b.LastUpdated
+, CONVERT(varchar,n.Fecha, 8) as HoraTurno
+, c.IdCaja
+, e.Descripcion Caja
+, m.IdTipoMovimiento
+, m.Descripcion TipoMovimiento
+, a.IdTipoMovimiento +'-'+ right ('0000'+ convert(varchar, a.PuntoVenta),4)+'-'+convert(varchar,a.Numero) as Comprobante
+, a.IdCategoriaIVA
+, g.Abreviatura +' - '+ g.Descripcion CategoriaIVA
+, i.Descripcion CondicionVenta
+, a.IdEstacion
+, k.Nombre Estacion
+, isnull(a.IdCliente,0) IdCliente
+, isnull(f.Codigo,0) CodigoCliente
+, UPPER(a.RazonSocial) RazonSocial
+, isnull(h.Descripcion,'N/I') TipoDocumento
+, isnull(a.NumeroDocumento,'N/I') NumeroDocumento
+---------------------------------------------------------------------------------------------
+--
+, isnull(a.IdPuesto,0) IdPuesto
+, 'N/I'  Puesto
+--, a.IdEmpleadoResponsable
+, isnull(o.Empleado,'N/I') EmpleadoResponsable
+--, n.IdEmpleado1
+--, o1.Empleado 
+--, n.IdEmpleado2 IdPlayero1
+, isnull(o2.Empleado,'N/I') Playero1
+--, n.IdEmpleado3 IdPlayero2
+, isnull(o3.Empleado,'N/I') Playero2
+--, n.IdEmpleado4 IdPlayero3
+, isnull(o4.Empleado,'N/I') Playero3
+---------------------------------------------------------------------------------------------
+, b.IdArticulo
+, c.Codigo CodigoArticulo
+, c.Descripcion
+, c.IdGrupoArticulo 
+, d.Descripcion GrupoArticulo
+, d.IdFamiliaArticulo
+, j.Descripcion FamiliaArticulo
+---------------------------------------------------------------------------------------------
+, case when d.IdFamiliaArticulo = 4 then 'COMBUSTIBLES' 
+       when d.IdFamiliaArticulo = 2 OR d.IdGrupoArticulo IN (10) then 'OTROS' 
+	   when d.IdGrupoArticulo IN (15,11,16) then 'LAVADO'
+	   when d.IdGrupoArticulo IN (14,12) then 'AUTOMOTOR'
+	   when d.IdGrupoArticulo IN (24) then 'CIGARRILLOS'
+	   when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36) then 'ALMACEN'
+	   when d.IdGrupoArticulo IN (48,26,62,56,42,29,18,35,31) then 'COMIDAS Y PREPARADOS'
+	   else 'SIN CLASIFICAR'
+	   end AS SubUnidadNegocio
+---------------------------------------------------------------------------------------------
+, case when d.IdFamiliaArticulo = 4 then 'PLAYA'
+       when d.IdFamiliaArticulo = 2 OR d.IdGrupoArticulo IN (10) then 'PLAYA'
+	   when d.IdGrupoArticulo IN (15,11,16) then 'LAVADERO Y ENGRASE'
+	   when d.IdGrupoArticulo IN (14,12) then 'SHOP'
+	   when d.IdGrupoArticulo IN (24) then 'SHOP'
+       when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36) then 'SHOP'
+	   when d.IdGrupoArticulo IN (48,26,62,56,42,29,18,35,31) then 'SHOP'
+	   else 'SIN CLASIFICAR'
+	   end as UnidadNegocio
+---------------------------------------------------------------------------------------------
+, case when b.Facturado = '1' then 'S' else 'N' end Facturado
+, b.Cantidad
+, b.Precio
+, b.Costo
+, round((b.Cantidad * b.Precio) - (b.IVA*b.Cantidad) - (b.ImpuestoInterno*b.Cantidad) - (b.Tasas*b.Cantidad),4) Neto
+, (b.IVA*b.Cantidad) IVA
+, (b.ImpuestoInterno*b.Cantidad) ImpuestoInterno
+, (b.Tasas*b.Cantidad) Tasas
+, (b.Cantidad * b.Precio) Total
+, convert(varchar, a.IdMovimientoFac) +' - '+ convert(varchar,a.Fecha, 112) as Grupo
+, (b.Cantidad * b.Precio) - (b.IVA*b.Cantidad) as Net_Int
+, (b.Cantidad * b.Costo) + (b.ImpuestoInterno*b.Cantidad) + (b.Tasas*b.Cantidad) as Costo_T 
+, DATEPART(dw,a.Fecha) Dia_Sem
+, DATEPART(day,a.Fecha) Fecha_Dia
+, datepart(hour, a.Fecha) Hora
+from [dbo].MovimientosFac a 
+left join [dbo].MovimientosDetalleFac b on b.IdMovimientoFac = a.IdMovimientoFac
+left join [dbo].Articulos c on c.IdArticulo = b.IdArticulo
+left join [dbo].GruposArticulos d on d.IdGrupoArticulo = c.IdGrupoArticulo
+left join [dbo].Cajas e on e.IdCaja =  c.IdCaja
+left join [dbo].Clientes f on f.IdCliente = a.IdCliente
+left join [dbo].CategoriasIVA g on g.IdCategoriaIVA = a.IdCategoriaIVA
+left join [dbo].TiposDocumento h on h.IdTipoDocumento = a.IdTipoDocumento
+left join [dbo].CondicionesVenta i on i.IdCondicionVenta = a.IdCondicionVenta
+left join [dbo].FamiliasArticulos j on j.IdFamiliaArticulo = d.IdFamiliaArticulo
+left join [dbo].Estaciones k on k.IdEstacion = a.IdEstacion
+left join [dbo].Puestos l on l.IdPuesto = a.IdPuesto
+left join [dbo].TiposMovimiento m on m.IdTipoMovimiento = a.IdTipoMovimiento
+left join [dbo].Empleados o  on o.IdEmpleado = a.IdEmpleadoResponsable
+left join [dbo].CierresTurno n on n.IdCierreTurno = b.IdCierreTurno and n.IdEstacion = a.IdEstacion
+left join [dbo].Empleados o1  on o1.IdEmpleado = n.IdEmpleado1
+left join [dbo].Empleados o2  on o2.IdEmpleado = n.IdEmpleado2
+left join [dbo].Empleados o3  on o3.IdEmpleado = n.IdEmpleado3
+left join [dbo].Empleados o4  on o4.IdEmpleado = n.IdEmpleado4
+where a.IdMovimientoFac &gt;= ?
+order by a.IdMovimientoFac</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping">"Parámetro0:Input",{04362649-FE1C-4899-BA08-338B43EDAF00};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Connections[OleDbConnection]"
+                  connectionManagerID="{65200E18-BC44-4953-9CBD-4E8B5D035E1E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[TUIN DS2000]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdMovimientoFac]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdMovimientoFac]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdMovimientoFac]"
+                      name="IdMovimientoFac"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdFecha]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdFecha]"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdFecha]"
+                      name="IdFecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FechaMovimiento]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[FechaMovimiento]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FechaMovimiento]"
+                      name="FechaMovimiento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Fecha]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Fecha]"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Fecha]"
+                      name="Fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Anio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Anio]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Anio]"
+                      name="Anio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Mes]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Mes]"
+                      length="2"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Mes]"
+                      name="Mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Periodo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Periodo]"
+                      length="33"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Periodo]"
+                      name="Periodo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FechaTurno]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[FechaTurno]"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FechaTurno]"
+                      name="FechaTurno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[HoraTurno]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[HoraTurno]"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[HoraTurno]"
+                      name="HoraTurno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCaja]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdCaja]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCaja]"
+                      name="IdCaja"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Caja]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Caja]"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Caja]"
+                      name="Caja"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdTipoMovimiento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdTipoMovimiento]"
+                      length="3"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdTipoMovimiento]"
+                      name="IdTipoMovimiento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[TipoMovimiento]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoMovimiento]"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[TipoMovimiento]"
+                      name="TipoMovimiento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Comprobante]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Comprobante]"
+                      length="39"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Comprobante]"
+                      name="Comprobante"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCategoriaIVA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdCategoriaIVA]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCategoriaIVA]"
+                      name="IdCategoriaIVA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CategoriaIVA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[CategoriaIVA]"
+                      length="38"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CategoriaIVA]"
+                      name="CategoriaIVA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CondicionVenta]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[CondicionVenta]"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CondicionVenta]"
+                      name="CondicionVenta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdEstacion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdEstacion]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdEstacion]"
+                      name="IdEstacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Estacion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Estacion]"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Estacion]"
+                      name="Estacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdCliente]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdCliente]"
+                      name="IdCliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CodigoCliente]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[CodigoCliente]"
+                      length="6"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CodigoCliente]"
+                      name="CodigoCliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[RazonSocial]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[RazonSocial]"
+                      length="60"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[RazonSocial]"
+                      name="RazonSocial"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[TipoDocumento]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoDocumento]"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[TipoDocumento]"
+                      name="TipoDocumento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[NumeroDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[NumeroDocumento]"
+                      length="15"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[NumeroDocumento]"
+                      name="NumeroDocumento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Puesto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Puesto]"
+                      length="3"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Puesto]"
+                      name="Puesto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[EmpleadoResponsable]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[EmpleadoResponsable]"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[EmpleadoResponsable]"
+                      name="EmpleadoResponsable"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Playero1]"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero1]"
+                      name="Playero1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Playero2]"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero2]"
+                      name="Playero2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Playero3]"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Playero3]"
+                      name="Playero3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdArticulo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdArticulo]"
+                      name="IdArticulo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CodigoArticulo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[CodigoArticulo]"
+                      length="8"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[CodigoArticulo]"
+                      name="CodigoArticulo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Descripcion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Descripcion]"
+                      length="60"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Descripcion]"
+                      name="Descripcion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdGrupoArticulo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdGrupoArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdGrupoArticulo]"
+                      name="IdGrupoArticulo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[GrupoArticulo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[GrupoArticulo]"
+                      length="60"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[GrupoArticulo]"
+                      name="GrupoArticulo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdFamiliaArticulo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdFamiliaArticulo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdFamiliaArticulo]"
+                      name="IdFamiliaArticulo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FamiliaArticulo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[FamiliaArticulo]"
+                      length="60"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[FamiliaArticulo]"
+                      name="FamiliaArticulo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[SubUnidadNegocio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[SubUnidadNegocio]"
+                      length="20"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[SubUnidadNegocio]"
+                      name="SubUnidadNegocio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[UnidadNegocio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[UnidadNegocio]"
+                      length="18"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[UnidadNegocio]"
+                      name="UnidadNegocio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Facturado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Facturado]"
+                      length="1"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Facturado]"
+                      name="Facturado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Cantidad]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Cantidad]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Cantidad]"
+                      name="Cantidad"
+                      precision="12"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Precio]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Precio]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Precio]"
+                      name="Precio"
+                      precision="14"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Costo]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Costo]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Costo]"
+                      name="Costo"
+                      precision="12"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Neto]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Neto]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Neto]"
+                      name="Neto"
+                      precision="32"
+                      scale="12"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IVA]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IVA]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IVA]"
+                      name="IVA"
+                      precision="29"
+                      scale="12"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[ImpuestoInterno]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[ImpuestoInterno]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[ImpuestoInterno]"
+                      name="ImpuestoInterno"
+                      precision="29"
+                      scale="12"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Tasas]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Tasas]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Tasas]"
+                      name="Tasas"
+                      precision="29"
+                      scale="12"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Total]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Total]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Total]"
+                      name="Total"
+                      precision="27"
+                      scale="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Grupo]"
+                      length="63"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Grupo]"
+                      name="Grupo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Net_Int]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Net_Int]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Net_Int]"
+                      name="Net_Int"
+                      precision="30"
+                      scale="12"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Costo_T]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Costo_T]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Costo_T]"
+                      name="Costo_T"
+                      precision="31"
+                      scale="12"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Dia_Sem]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Dia_Sem]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Dia_Sem]"
+                      name="Dia_Sem"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Fecha_Dia]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Fecha_Dia]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Fecha_Dia]"
+                      name="Fecha_Dia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Hora]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Hora]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[Hora]"
+                      name="Hora"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdPuesto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdPuesto]"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].Columns[IdPuesto]"
+                      name="IdPuesto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdMovimientoFac]"
+                      dataType="i4"
+                      name="IdMovimientoFac" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdFecha]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="IdFecha" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[FechaMovimiento]"
+                      dataType="dbTimeStamp"
+                      name="FechaMovimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Fecha]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Anio]"
+                      dataType="i4"
+                      name="Anio" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Mes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Mes" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Periodo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="33"
+                      name="Periodo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[FechaTurno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="FechaTurno" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[HoraTurno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="HoraTurno" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdCaja]"
+                      dataType="i4"
+                      name="IdCaja" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Caja]"
+                      dataType="wstr"
+                      length="30"
+                      name="Caja" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdTipoMovimiento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="IdTipoMovimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoMovimiento]"
+                      dataType="wstr"
+                      length="30"
+                      name="TipoMovimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Comprobante]"
+                      codePage="1252"
+                      dataType="str"
+                      length="39"
+                      name="Comprobante" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdCategoriaIVA]"
+                      dataType="i4"
+                      name="IdCategoriaIVA" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[CategoriaIVA]"
+                      dataType="wstr"
+                      length="38"
+                      name="CategoriaIVA" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[CondicionVenta]"
+                      dataType="wstr"
+                      length="30"
+                      name="CondicionVenta" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdEstacion]"
+                      dataType="i4"
+                      name="IdEstacion" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Estacion]"
+                      dataType="wstr"
+                      length="50"
+                      name="Estacion" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdCliente]"
+                      dataType="i4"
+                      name="IdCliente" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[CodigoCliente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="CodigoCliente" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[RazonSocial]"
+                      dataType="wstr"
+                      length="60"
+                      name="RazonSocial" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoDocumento]"
+                      dataType="wstr"
+                      length="30"
+                      name="TipoDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[NumeroDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="NumeroDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Puesto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Puesto" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[EmpleadoResponsable]"
+                      dataType="wstr"
+                      length="50"
+                      name="EmpleadoResponsable" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Playero1]"
+                      dataType="wstr"
+                      length="50"
+                      name="Playero1" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Playero2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Playero2" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Playero3]"
+                      dataType="wstr"
+                      length="50"
+                      name="Playero3" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdArticulo]"
+                      dataType="i4"
+                      name="IdArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[CodigoArticulo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="CodigoArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Descripcion]"
+                      dataType="wstr"
+                      length="60"
+                      name="Descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdGrupoArticulo]"
+                      dataType="i4"
+                      name="IdGrupoArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[GrupoArticulo]"
+                      dataType="wstr"
+                      length="60"
+                      name="GrupoArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdFamiliaArticulo]"
+                      dataType="i4"
+                      name="IdFamiliaArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[FamiliaArticulo]"
+                      dataType="wstr"
+                      length="60"
+                      name="FamiliaArticulo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[SubUnidadNegocio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="SubUnidadNegocio" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[UnidadNegocio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="UnidadNegocio" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Facturado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Facturado" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Cantidad]"
+                      dataType="numeric"
+                      name="Cantidad"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Precio]"
+                      dataType="numeric"
+                      name="Precio"
+                      precision="14"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Costo]"
+                      dataType="numeric"
+                      name="Costo"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Neto]"
+                      dataType="numeric"
+                      name="Neto"
+                      precision="32"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IVA]"
+                      dataType="numeric"
+                      name="IVA"
+                      precision="29"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[ImpuestoInterno]"
+                      dataType="numeric"
+                      name="ImpuestoInterno"
+                      precision="29"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Tasas]"
+                      dataType="numeric"
+                      name="Tasas"
+                      precision="29"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Total]"
+                      dataType="numeric"
+                      name="Total"
+                      precision="27"
+                      scale="10" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="63"
+                      name="Grupo" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Net_Int]"
+                      dataType="numeric"
+                      name="Net_Int"
+                      precision="30"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Costo_T]"
+                      dataType="numeric"
+                      name="Costo_T"
+                      precision="31"
+                      scale="12" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Dia_Sem]"
+                      dataType="i4"
+                      name="Dia_Sem" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Fecha_Dia]"
+                      dataType="i4"
+                      name="Fecha_Dia" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[Hora]"
+                      dataType="i4"
+                      name="Hora" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB].ExternalColumns[IdPuesto]"
+                      dataType="i4"
+                      name="IdPuesto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdMovimientoFac]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdMovimientoFac]"
+                      name="IdMovimientoFac" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdFecha]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdFecha]"
+                      name="IdFecha" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[FechaMovimiento]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[FechaMovimiento]"
+                      name="FechaMovimiento" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Fecha]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Fecha]"
+                      name="Fecha" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Anio]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Anio]"
+                      name="Anio" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Mes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Mes]"
+                      name="Mes" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Periodo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="33"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Periodo]"
+                      name="Periodo" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[FechaTurno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[FechaTurno]"
+                      name="FechaTurno" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[HoraTurno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[HoraTurno]"
+                      name="HoraTurno" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdCaja]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdCaja]"
+                      name="IdCaja" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Caja]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Caja]"
+                      name="Caja" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdTipoMovimiento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdTipoMovimiento]"
+                      name="IdTipoMovimiento" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[TipoMovimiento]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[TipoMovimiento]"
+                      name="TipoMovimiento" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Comprobante]"
+                      codePage="1252"
+                      dataType="str"
+                      length="39"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Comprobante]"
+                      name="Comprobante" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdCategoriaIVA]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdCategoriaIVA]"
+                      name="IdCategoriaIVA" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[CategoriaIVA]"
+                      dataType="wstr"
+                      length="38"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[CategoriaIVA]"
+                      name="CategoriaIVA" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[CondicionVenta]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[CondicionVenta]"
+                      name="CondicionVenta" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdEstacion]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdEstacion]"
+                      name="IdEstacion" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Estacion]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Estacion]"
+                      name="Estacion" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdCliente]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdCliente]"
+                      name="IdCliente" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[CodigoCliente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[CodigoCliente]"
+                      name="CodigoCliente" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[RazonSocial]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[RazonSocial]"
+                      name="RazonSocial" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[TipoDocumento]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[TipoDocumento]"
+                      name="TipoDocumento" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[NumeroDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[NumeroDocumento]"
+                      name="NumeroDocumento" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdPuesto]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdPuesto]"
+                      name="IdPuesto" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Puesto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Puesto]"
+                      name="Puesto" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[EmpleadoResponsable]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[EmpleadoResponsable]"
+                      name="EmpleadoResponsable" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Playero1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Playero1]"
+                      name="Playero1" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Playero2]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Playero2]"
+                      name="Playero2" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Playero3]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Playero3]"
+                      name="Playero3" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdArticulo]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdArticulo]"
+                      name="IdArticulo" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[CodigoArticulo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[CodigoArticulo]"
+                      name="CodigoArticulo" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Descripcion]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Descripcion]"
+                      name="Descripcion" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdGrupoArticulo]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdGrupoArticulo]"
+                      name="IdGrupoArticulo" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[GrupoArticulo]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[GrupoArticulo]"
+                      name="GrupoArticulo" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdFamiliaArticulo]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IdFamiliaArticulo]"
+                      name="IdFamiliaArticulo" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[FamiliaArticulo]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[FamiliaArticulo]"
+                      name="FamiliaArticulo" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[SubUnidadNegocio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[SubUnidadNegocio]"
+                      name="SubUnidadNegocio" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[UnidadNegocio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[UnidadNegocio]"
+                      name="UnidadNegocio" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Facturado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Facturado]"
+                      name="Facturado" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Cantidad]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Cantidad]"
+                      name="Cantidad"
+                      precision="12"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Precio]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Precio]"
+                      name="Precio"
+                      precision="14"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Costo]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Costo]"
+                      name="Costo"
+                      precision="12"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Neto]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Neto]"
+                      name="Neto"
+                      precision="32"
+                      scale="12" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IVA]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[IVA]"
+                      name="IVA"
+                      precision="29"
+                      scale="12" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[ImpuestoInterno]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[ImpuestoInterno]"
+                      name="ImpuestoInterno"
+                      precision="29"
+                      scale="12" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Tasas]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Tasas]"
+                      name="Tasas"
+                      precision="29"
+                      scale="12" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Total]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Total]"
+                      name="Total"
+                      precision="27"
+                      scale="10" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="63"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Grupo]"
+                      name="Grupo" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Net_Int]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Net_Int]"
+                      name="Net_Int"
+                      precision="30"
+                      scale="12" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Costo_T]"
+                      dataType="numeric"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Costo_T]"
+                      name="Costo_T"
+                      precision="31"
+                      scale="12" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Dia_Sem]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Dia_Sem]"
+                      name="Dia_Sem" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Fecha_Dia]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Fecha_Dia]"
+                      name="Fecha_Dia" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Hora]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[Hora]"
+                      name="Hora" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Dataflow - Flujo Carga de Datos.Paths[Salida de columna derivada]"
+              endId="Package\Dataflow - Flujo Carga de Datos\Cargando Datos.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de columna derivada"
+              startId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Dataflow - Flujo Carga de Datos.Paths[Salida de origen de OLE DB]"
+              endId="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados.Inputs[Entrada de columna derivada]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log Fin Carga"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{f0bbea73-4a93-4752-a480-832f3105b376}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Fin Carga"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1A110EBB-1937-4D8C-B332-08D1D6CE807C}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO bi.LogETL&#xA;(TABLA,DESCRIPCION,FECHA) values ('bi.reporte_movimientos','Fin carga',getdate());" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log Inicio de Carga"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{990aa488-8f20-4fb6-b547-dcfda7a0f914}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Inicio de Carga"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1A110EBB-1937-4D8C-B332-08D1D6CE807C}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO bi.LogETL&#xA;(TABLA,DESCRIPCION,FECHA) values ('bi.reporte_movimientos','Inicio carga',getdate());&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Obtiene la fecha actual"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Tarea de expresión"
+      DTS:DTSID="{a178c74b-42c9-4f71-b690-6a50774f1fcd}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Obtiene la fecha actual"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::FechaActual]= GETDATE()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{be6ed3c3-3fc5-4a6d-8fcc-4431e12ae944}"
+      DTS:From="Package\Log Inicio de Carga"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Obtiene la fecha actual" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{d662c0d1-7ac4-4330-acba-53a5c1d5e099}"
+      DTS:From="Package\Obtiene la fecha actual"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Asigna Max(Id) a Var MaxIdMovimientoFac" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{6d9ebb1f-0487-48bf-bbef-cecd44dd4566}"
+      DTS:From="Package\Dataflow - Flujo Carga de Datos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Log Fin Carga" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9a0649e0-879a-4311-ba43-712042793783}"
+      DTS:From="Package\Asigna Max(Id) a Var MaxIdMovimientoFac"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Borra Max Id Cargado Reporte_Movimientos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{1feb4339-5f42-45ab-9700-33e97a15b676}"
+      DTS:From="Package\Borra Max Id Cargado Reporte_Movimientos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\Dataflow - Flujo Carga de Datos" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="290,42"
+          Id="Package\Asigna Max(Id) a Var MaxIdMovimientoFac"
+          TopLeft="60,194.75" />
+        <NodeLayout
+          Size="297,42"
+          Id="Package\Borra Max Id Cargado Reporte_Movimientos"
+          TopLeft="62.75,265.5" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Dataflow - Flujo Carga de Datos"
+          TopLeft="89,337.5" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Log Fin Carga"
+          TopLeft="129.75,414.75" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Log Inicio de Carga"
+          TopLeft="123,60" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Obtiene la fecha actual"
+          TopLeft="108.25,129" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="206.875,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="204.375,171">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.75"
+              Start="0,0"
+              End="0,16.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="205.125,379.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.25"
+              Start="0,0"
+              End="0,27.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="208.125,236.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.75"
+              Start="0,0"
+              End="0,21.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="208.875,307.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="ETL Tabla Reporte_Movimientos"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="196,40"
+          Id="b9fbc444-0b40-4de0-988c-cedaf13e990a"
+          TopLeft="343.75,62" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Dataflow - Flujo Carga de Datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos"
+          TopLeft="269,15" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Dataflow - Flujo Carga de Datos\Genera Campos Calculados"
+          TopLeft="260,100" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Dataflow - Flujo Carga de Datos\Cargando Datos"
+          TopLeft="289,181" />
+        <EdgeLayout
+          Id="Package\Dataflow - Flujo Carga de Datos.Paths[Salida de origen de OLE DB]"
+          TopLeft="369.75,57">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dataflow - Flujo Carga de Datos.Paths[Salida de columna derivada]"
+          TopLeft="368.5,142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dataflow - Flujo Carga de Datos\Leyendo Origen de Datos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dataflow - Flujo Carga de Datos\Cargando Datos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

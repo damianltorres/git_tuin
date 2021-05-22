@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="TUIN DS2000"
+  DTS:DTSID="{65200E18-BC44-4953-9CBD-4E8B5D035E1E}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=TUIN\SQLAONIKEN;User ID=Consulta;Initial Catalog=DS2000.Net;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAADBPmXLGyxNECFPX4ImZ7Wl9yWpZ8HNEJwhOmya7yAugAAAAAOgAAAAAIAACAAAABGRBHPc1sZShiD0NVIT7WtQOFC9LnscszCNk9JkNLtQIAAAAAAq5MwgSe3M2LaHmSvI6qpfOWq9pSvkKG8V+8ENqEaDUeO+bIUtE6YlgxQwBYNxY1GTEF5Ixe7LsMZFOqvQZ2vk69OGe/iy4RMQuJpcYJk/UueAuAB/gGuidB31lDF5m9/1/0uGAje/AxTpbaNfHGPM2pMy7gBegXH5D7Z9Wnx4UAAAADf5d/KxHCLBKO/17P8so36OaTkeuaKylNY4DiStWQyZTG2mYkeLnVNbtv1eKgZX0yANRKp9r0Y/Ci5UNl7TVOC</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
