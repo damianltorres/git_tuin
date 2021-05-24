@@ -10,7 +10,7 @@
       DTS:ConnectionString="Data Source=TUIN\SQLAONIKEN;User ID=Consulta;Initial Catalog=DS2000.Net;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAADLlkOy4X375PsGe1q+w0PeaCGifyFxQbaiHjzcgkiqpgAAAAAOgAAAAAIAACAAAAD5B41Ijbj0XP4RWxeqmLnSeW7C+PyMHZG67MhYx5PixIAAAABEDUdhFtzhRGHh/kjfzo/xQ/itXv0KaKRj/jqBXV8ozfsOG2gP4+/1uZpERWHVn7HCzWvi2LVGK9Y/S/nERDcYwPu3+QCFUdC9ZRKNM78HMKd/suVYMUNGqfoUwypq2QXlRaChFPznPVQFqDZLXvYQudTuwHeNhpEluuLyWAvso0AAAAADjQXbU7XjxB6CjySnka3ZkFJZrDFNfoLA/nSkMnpvJOdQX3GTmQniPjXMY18BkY7ZGnIFE7bPYilogCrHM7EE</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAAOLdCN7ZqnGTKn7F6fgWQAD5q5EQgGAFL58la51thGngAAAAAOgAAAAAIAACAAAACgxbMP36a+8pAZ97nRFa9iA1dPZF+pGnSeXWuQGlK/PIAAAAAe1iUf1QBgp9upGyoPugREoGwCwlisnS521eCmxLCZQ9beyd+ZnR+5Xrplu7bie0iaCf9ac2MNv7zhDiykA5hhWxQkN0fhPhuMQ69vp9xiLO0jL/bfTrhHbSQYHT5W302FJoehTCcQwyipVUPygSbWxcahWiJcPnJj7PMcC4iZn0AAAADwAIBIGmFETwVMLZjlDy9hg5tmOIbiyZ3Ssf6yeV+xkDdmJTpik848Sd0a/oDgClS3zioduQZYqATy+frygZaw</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
