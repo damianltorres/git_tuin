@@ -1,13 +1,6 @@
 
 ////////// github //////////
 
-https://github.com/torresdl/LaMercantil.git
-
-Pass:  Lilo-1311
-User:  torresdl
-Email: damian.torres@lamercantil.com.ar
-
-
 ---- Comandos importantes ----
 
 pwd	Imprime el ‘directorio actual de trabajo’, permitiéndote saber dónde estás.
