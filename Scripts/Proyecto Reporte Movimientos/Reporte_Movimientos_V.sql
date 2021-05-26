@@ -10,7 +10,7 @@ GO
 
 
 
-create view [bi].[Reporte_Movimientos_V] with encryption as (
+alter view [bi].[Reporte_Movimientos_V] with encryption as (
 select
 --a.UserName0
 a.IdMovimientoFac
@@ -66,7 +66,7 @@ a.IdMovimientoFac
 	   when d.IdGrupoArticulo IN (15,11,16) then 'LAVADO'
 	   when d.IdGrupoArticulo IN (14,12) then 'AUTOMOTOR'
 	   when d.IdGrupoArticulo IN (24) then 'CIGARRILLOS'
-	   when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36) then 'ALMACEN'
+	   when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36,38,51,58,63) then 'ALMACEN'
 	   when d.IdGrupoArticulo IN (48,26,62,56,42,29,18,35,31) then 'COMIDAS Y PREPARADOS'
 	   else 'SIN CLASIFICAR'
 	   end AS SubUnidadNegocio
@@ -76,7 +76,7 @@ a.IdMovimientoFac
 	   when d.IdGrupoArticulo IN (15,11,16) then 'LAVADERO Y ENGRASE'
 	   when d.IdGrupoArticulo IN (14,12) then 'SHOP'
 	   when d.IdGrupoArticulo IN (24) then 'SHOP'
-       when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36) then 'SHOP'
+       when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36,38,51,58,63) then 'SHOP'
 	   when d.IdGrupoArticulo IN (48,26,62,56,42,29,18,35,31) then 'SHOP'
 	   else 'SIN CLASIFICAR'
 	   end as UnidadNegocio
