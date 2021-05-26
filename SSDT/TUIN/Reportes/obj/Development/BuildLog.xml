@@ -2,19 +2,25 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>Reportes</Name>
-    <LastWriteTime>2021-05-22T14:51:14.1892041Z</LastWriteTime>
-    <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    <LastWriteTime>2021-05-26T19:10:18.6700849Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
+    <Salt>KhXGrLtJ</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAAlPbhCJVFo/Fc9A3VHXmmv8RwzipgNlju4aS7tulqsQgAAAAAOgAAAAAIAACAAAAB4+1HY7bzZ9s4sClJ6hSAlFTNXOj5hSNVCNle/nukyIzAAAABvPUA9oPO6IIrm3oHBuZFTSkkJ9hKzNVeVJUpGk4TR0SLlPMZHOVLJxLyPpIU7LxVAAAAACHgr5xGh64aMjLlgYApUPsV6TjsP7oEDWIb9WE9qSpi8h4d2yF82xyOZQHaqzk7i/5uyflecGhQOPKuREBwo/w==</LastKnownProtectedHashedPassword>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>reporte_movimientos.dtsx</Name>
-      <LastWriteTime>2021-05-26T13:36:15.4422104Z</LastWriteTime>
-      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+      <LastWriteTime>2021-05-26T19:10:09.1673634Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
+      <Salt>zssLcsU7</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAByd6kDCSN7in3KrX6442g8yxODmG/aqu8kfDwzz/V02AAAAAAOgAAAAAIAACAAAABM6E4ddGxFN4oAe3f7pQofRTn6kb6CC6EgBCI6ulRcOTAAAACZNBAcjSKtMrtI1sBqxhYYrV7inoTDEuHzZHYQEj1Fy5FSXPBOpk+m2GdHJwixFvZAAAAAlbJL9tew7IDEtRknpn9ZG5rAFiQjeozmW3DrV12p3mVkq2abV4UHzWSSNa6SKxkQPxyYKX+iV7fNHmq04svWaQ==</LastKnownProtectedHashedPassword>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>orquestador.dtsx</Name>
-      <LastWriteTime>2021-05-26T13:46:32.9846177Z</LastWriteTime>
-      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+      <LastWriteTime>2021-05-26T19:13:33.1296348Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptAllWithPassword</LastKnownProtectionLevel>
+      <Salt>bxhGs3Qm</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAABOw92UAO97mD7PIzcIuo4Rul1jPzZndy2dYvnbTPr3RgAAAAAOgAAAAAIAACAAAAAc7XRJQqvMNPoVy2pAK/UbXTlwioScn27xtPR+c/mwCjAAAAAOziJN4WOCMuJhnps+ybiMo8QPQuhDV3Zray4hMsMnyL57TYZ7XolNuP4wc5d7Zl9AAAAAG3V6OsmK3gvuO88nV0fRuWYyHeuynmx3JHUH68u6fKI1YArqBbQBh1b3deWrXf7UjGknj1JVERsbaelJHrOMzw==</LastKnownProtectedHashedPassword>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
 </BuildLog>

@@ -70,17 +70,49 @@ a.IdMovimientoFac
 	   end as UnidadNegocio
 ---------------------------------------------------------------------------------------------
 , case when b.Facturado = '1' then 'S' else 'N' end Facturado
-, b.Cantidad
-, b.Precio
-, b.Costo
-, round((b.Cantidad * b.Precio) - (b.IVA*b.Cantidad) - (b.ImpuestoInterno*b.Cantidad) - (b.Tasas*b.Cantidad),4) Neto
-, (b.IVA*b.Cantidad) IVA
-, (b.ImpuestoInterno*b.Cantidad) ImpuestoInterno
-, (b.Tasas*b.Cantidad) Tasas
-, (b.Cantidad * b.Precio) Total
+---------------------------------------------------------------------------------------------
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then b.Cantidad *-1 
+	else b.Cantidad 
+	end Cantidad
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then b.Precio *-1 
+	else b.Precio  
+	end Precio 
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then b.Costo *-1 
+	else  b.Costo 
+	end  Costo
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then (round((b.Cantidad * b.Precio) - (b.IVA*b.Cantidad) - (b.ImpuestoInterno*b.Cantidad) - (b.Tasas*b.Cantidad),4)) *-1 
+	else  (round((b.Cantidad * b.Precio) - (b.IVA*b.Cantidad) - (b.ImpuestoInterno*b.Cantidad) - (b.Tasas*b.Cantidad),4)) 
+	end Neto
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then (b.IVA*b.Cantidad) *-1 
+	else (b.IVA*b.Cantidad) 
+	end  IVA
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then (b.ImpuestoInterno*b.Cantidad) *-1 
+	else (b.ImpuestoInterno*b.Cantidad) 
+	end ImpuestoInterno
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then (b.Tasas*b.Cantidad) *-1 
+	else (b.Tasas*b.Cantidad) 
+	end Tasas
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then (b.Cantidad * b.Precio) *-1 
+	else (b.Cantidad * b.Precio) 
+	end  Total
+---------------------------------------------------------------------------------------------
 , convert(varchar, a.IdMovimientoFac) +' - '+ convert(varchar,a.Fecha, 112) as Grupo
-, (b.Cantidad * b.Precio) - (b.IVA*b.Cantidad) as Net_Int
-, (b.Cantidad * b.Costo) + (b.ImpuestoInterno*b.Cantidad) + (b.Tasas*b.Cantidad) as Costo_T 
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then ((b.Cantidad * b.Precio) - (b.IVA*b.Cantidad)) *-1 
+	else ((b.Cantidad * b.Precio) - (b.IVA*b.Cantidad)) 
+	end Net_Int
+, case when m.IdTipoMovimiento IN ('CEA','NCA','NCB','RDV') 
+	then ((b.Cantidad * b.Costo) + (b.ImpuestoInterno*b.Cantidad) + (b.Tasas*b.Cantidad)) *-1 
+	else ((b.Cantidad * b.Costo) + (b.ImpuestoInterno*b.Cantidad) + (b.Tasas*b.Cantidad)) 
+	end Costo_T 
 , DATEPART(dw,a.Fecha) Dia_Sem
 , DATEPART(day,a.Fecha) Fecha_Dia
 , datepart(hour, a.Fecha) Hora
@@ -103,4 +135,5 @@ left join [dbo].Empleados o1  on o1.IdEmpleado = n.IdEmpleado1
 left join [dbo].Empleados o2  on o2.IdEmpleado = n.IdEmpleado2
 left join [dbo].Empleados o3  on o3.IdEmpleado = n.IdEmpleado3
 left join [dbo].Empleados o4  on o4.IdEmpleado = n.IdEmpleado4
-where  a.IdMovimientoFac >= ? 
+where a.IdMovimientoFac >= ? 
+

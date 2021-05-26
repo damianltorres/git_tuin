@@ -2,11 +2,7 @@
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="PCTUIN.SBDBITUIN"
   DTS:DTSID="{1A110EBB-1937-4D8C-B332-08D1D6CE807C}"
-  DTS:CreationName="OLEDB">
-  <DTS:ObjectData>
-    <DTS:ConnectionManager
-      DTS:ConnectRetryCount="1"
-      DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=PCTUIN;Initial Catalog=SBDBITUIN;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-  </DTS:ObjectData>
-</DTS:ConnectionManager>
+  DTS:CreationName="OLEDB"
+  p1:Salt="hNyGTmeS0Y0="
+  p1:IV="c/ThxZl0HjPC4hEeR4CuJQ=="
+  p1:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p1="www.microsoft.com/SqlServer/SSIS">lzLtfYHnBeen8vlKp8EpiClxbYD9+RiFdAFj1hTEa7wiGYKBTuMnVl7GB2gM+h5i8Xtq2nBpBS9D4Qx5YJYuao+QkpMa0R0Pl+zAfjLJRwL7XRofrgGucejMwktBDlXPSWCE5A8RRZq3drjTja/KnkEJomXAR+0Jopt3kivczlWet1t0zD4VHapmZYbEjA2YJ/2+ShztyTudlptmeuIchZDv8IRYFH3l+5l++w+i8/zsAHdAlbOg4eco5Kb7Tvv6+QO8c/xMwUtYeZTtyRy2HLuKj9muWBXLNawJrfGLodM16s6n12LlT8mh5emdB1bw3QI3HBcCG5R0+Wnuq5KuhWpLV7OaPsg42m2fCneQjgQ7sTf2aWyU1Ver+kBTuO3Khd0uzsraQCSgYgZqp13j7FigKJf0F0dHBiaONee3CWuiwZA3i3EjHx5TyuTS2HlD9OHnOHbzYMp/bm4GhlFKZ/X+HuUUNnZT7+1Ovvx9FH9Rt7QvsCYAUntU+qtZ3h+FjSdCJjmoSssIjzEgno51Y9Ek6yY/53pdJMxpJSSJYW0sU+jJFyyJnqVKKUMtPAMFwOcrjPc29ZD6z8/olPzs3w4j55kF+E/6TKLHCOKcaVw=</DTS:ConnectionManager>
