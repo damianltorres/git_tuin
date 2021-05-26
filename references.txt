@@ -1,0 +1,67 @@
+
+////////// github //////////
+
+https://github.com/torresdl/LaMercantil.git
+
+Pass:  Lilo-1311
+User:  torresdl
+Email: damian.torres@lamercantil.com.ar
+
+
+---- Comandos importantes ----
+
+pwd	Imprime el ‘directorio actual de trabajo’, permitiéndote saber dónde estás.
+ls	Enlista los archivos en el directorio actual.
+man *	Enlista el manual del comando, sustituyendo el * por el nombre del comando.
+cd *	Cambia el directorio actual a *.
+mkdir *	Crea un directorio llamado *.
+open or explorer	En OS X, open seguido del nombre del archivo lo abre; en Windows, el comando explorer seguido por el nombre del archivo hace lo mismo.
+cat *	cat es un comando versátil. Leerá un archivo poniendo el nombre en vez de *, pero también se utiliza para combinar archivos.
+head *	Muestra las primeras diez líneas de *.
+tail *	Muestra las últimas diez líneas de *.
+mv	Mueve un archivo.
+cp	Copia un archivo.
+rm	Borra un archivo.
+vim	Abre el editor de documentos vim.
+git status -s
+git add .
+git add nombre_archivo
+git diff
+git checkout .
+git log 
+git log --all --decorate --oneline --graph
+git log -p
+git reset HEAD nombre_archivo
+git commit -m "Mensaje para el commit"
+git commit --amend -m "Cambio el mensaje para el commit"
+git config --global alias.l "log"
+git mv principal.txt princ.txt 
+git config --global -l
+
+---- Video YouTube ----
+
+https://www.youtube.com/watch?v=HiXLkL42tMU&ab_channel=Fazt
+
+6:33 Basic commands
+9:54 Descarga de Git
+10:50 Instalacion de Git
+13:36 Primer ejemplo
+15:43 Git Bash
+16:37 git init
+17:41 git status
+18:19 git add
+20:01 git commit
+20:37 git config
+23:02 git log
+24:55 git checkout -- <name file>
+25:45 git diff
+29:39 .gitignore
+32:16 git commit -m <message>
+33:35 git branch <branch name>
+33:57 moverse entre ramas
+33:58 git checkout <branch name>
+35:17 agregar archivos de una vez con git add .
+41:15 crear un repositorio en github
+43:33 git remote
+44:10 git push
+48:30 git clone
