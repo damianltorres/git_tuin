@@ -1,4 +1,3 @@
-
 select
 --a.UserName0
 a.IdMovimientoFac
@@ -28,8 +27,9 @@ a.IdMovimientoFac
 , isnull(h.Descripcion,'N/I') TipoDocumento
 , isnull(a.NumeroDocumento,'N/I') NumeroDocumento
 ---------------------------------------------------------------------------------------------
+--
 , isnull(a.IdPuesto,0) IdPuesto
-, isnull(l.Nombre,'N/I') Puesto
+, 'N/I'  Puesto
 --, a.IdEmpleadoResponsable
 , isnull(o.Empleado,'N/I') EmpleadoResponsable
 --, n.IdEmpleado1
@@ -43,18 +43,18 @@ a.IdMovimientoFac
 ---------------------------------------------------------------------------------------------
 , b.IdArticulo
 , c.Codigo CodigoArticulo
-, c.Descripcion
+, case when b.IdArticulo IN(4) then  'FORMULA DIESEL' ELSE c.Descripcion end Descripcion
 , c.IdGrupoArticulo 
-, d.Descripcion GrupoArticulo
+, case when b.IdArticulo IN(4) then  'FOR.DIESEL' ELSE d.Descripcion end GrupoArticulo
 , d.IdFamiliaArticulo
 , j.Descripcion FamiliaArticulo
----------------------------------------------------------------------------------------------
+-------------------------------------------	--------------------------------------------------
 , case when d.IdFamiliaArticulo = 4 then 'COMBUSTIBLES' 
        when d.IdFamiliaArticulo = 2 OR d.IdGrupoArticulo IN (10) then 'OTROS' 
 	   when d.IdGrupoArticulo IN (15,11,16) then 'LAVADO'
 	   when d.IdGrupoArticulo IN (14,12) then 'AUTOMOTOR'
 	   when d.IdGrupoArticulo IN (24) then 'CIGARRILLOS'
-	   when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36) then 'ALMACEN'
+	   when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36,38,51,58,63) then 'ALMACEN'
 	   when d.IdGrupoArticulo IN (48,26,62,56,42,29,18,35,31) then 'COMIDAS Y PREPARADOS'
 	   else 'SIN CLASIFICAR'
 	   end AS SubUnidadNegocio
@@ -64,7 +64,7 @@ a.IdMovimientoFac
 	   when d.IdGrupoArticulo IN (15,11,16) then 'LAVADERO Y ENGRASE'
 	   when d.IdGrupoArticulo IN (14,12) then 'SHOP'
 	   when d.IdGrupoArticulo IN (24) then 'SHOP'
-       when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36) then 'SHOP'
+       when d.IdGrupoArticulo IN (28,49,33,45,50,22,25,23,21,19,20,30,32,37,39,3,7,57,36,38,51,58,63) then 'SHOP'
 	   when d.IdGrupoArticulo IN (48,26,62,56,42,29,18,35,31) then 'SHOP'
 	   else 'SIN CLASIFICAR'
 	   end as UnidadNegocio
@@ -103,4 +103,4 @@ left join [dbo].Empleados o1  on o1.IdEmpleado = n.IdEmpleado1
 left join [dbo].Empleados o2  on o2.IdEmpleado = n.IdEmpleado2
 left join [dbo].Empleados o3  on o3.IdEmpleado = n.IdEmpleado3
 left join [dbo].Empleados o4  on o4.IdEmpleado = n.IdEmpleado4
-order by a.IdMovimientoFac 
+where  a.IdMovimientoFac >= ? 
