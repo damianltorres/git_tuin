@@ -2,15 +2,7 @@
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="TUIN DS2000"
   DTS:DTSID="{65200E18-BC44-4953-9CBD-4E8B5D035E1E}"
-  DTS:CreationName="OLEDB">
-  <DTS:ObjectData>
-    <DTS:ConnectionManager
-      DTS:ConnectRetryCount="1"
-      DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=TUIN\SQLAONIKEN;User ID=Consulta;Initial Catalog=DS2000.Net;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
-      <DTS:Password
-        DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjGgszcELXUW1gk+NtfJDpgAAAAACAAAAAAAQZgAAAAEAACAAAAAEK3qgp4/QfiQqw2ng1Kx6rmlPz72B4fYoFzSjS5I/0gAAAAAOgAAAAAIAACAAAABSqxH7Q41APWttTG9V4uLsIqB5v98qdE3FYXtjibgya4AAAADeXrUNwXiDNxbm1tHQPAkPH1gMudeTbSCl/z105n8qC9ZKpU6TlVto2TfPGct6szmBFJmasiI95KhZ/sL9NDJZPEZCHHiGAcYDiF3S0/5qBTTOW2yFbfNVFVO4lPo65EjJ8VMfnB/SqgriF+3ls9Z0dEmiPf9blIxEtMrU0P6S8EAAAADc0xDRLuz2Cz/44YgAagYS9S1y/ZcRYu59NwuFx5bCE5x3zauw+It3JXGNjSinTGFatWg4l6KfNtPSs6bI/NcV</DTS:Password>
-    </DTS:ConnectionManager>
-  </DTS:ObjectData>
-</DTS:ConnectionManager>
+  DTS:CreationName="OLEDB"
+  p1:Salt="7ODZKsp+RG8="
+  p1:IV="nrXnbskT5HH+UGE/JgK0MQ=="
+  p1:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p1="www.microsoft.com/SqlServer/SSIS">cposHn+UwlesEp98c70dWbcETlKlGKkQKadB7xcI0PXvvSJbTKu2+1v5pw5OcbLoWK9xX/VcIFBL5IT4/fkkemidudHEK8Nr5Y/C0/UNQoV/EndJ+1RaO7x8U5ECF0NbHLiyqFuVFtlXbse6+7IKBov8oe+Gfb6CNlMQpNFScva9ztCpXoKTLBqKvJ7IdcT4Lp8yG0v+VOFxo85M114zBOe6InsjQrLdvIKdXSnNR0PwWqOA14WM6Fc+AlEmK/xDF9bZR8tsgKK+n04NJotR+/mxQjVbyC8B9K6d71vqFQeLkZH3BIQ2tDuqQ5r5dJyLd5x4xZzay6qI/FUz4IbBc/x6KDDTJo6A9eaA4AR2pzUrg9althLYSgrPkrZERJvm+dECPWprtfjM4Dl6oBoS41OEvUylNJxAxLzasB49gTuqlZ6ziskOvvenTiw81Zua3Q1MMqQF5FmtK4ZzrtE+adD0uE+8AEsMg9ogkBtcJZAVMBW8BuQcebkfM0pU8ChSyiKIQg4HF01IjA7CnIzzyrNzjviTZQ7Y2GfzAUZ1UsKEAFKMV3Yj9BDH1dyQZu9MdH8hMhSK3noO8PnkprRcOiwO4JrIL+BITWGGWEhWmF9/grW7F9tQP+GYTvYZpy+4Vnpv4fe2jZ2ujxgNTlKERunYPZ9iDNcZNAUEcgC4BFD+MJj06+PrqGqM6Kh1XntedHBvu4zGeHKF66hsdzTlPArsnU7+WC7QK4m65zi3GJYml6huQ+7fMD23NXfprOpB</DTS:ConnectionManager>
